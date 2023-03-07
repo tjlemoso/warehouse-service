@@ -1,5 +1,6 @@
 package org.acme.com.resource;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -59,6 +60,7 @@ public class WarehouseRepositoryResource {
         if (warehouse.getName() == "") {
             throw new WebApplicationException("Warehouse was invalidly set on request.", 422);
         }
+        warehouse.setCreateData(LocalDate.now());
         warehouseRepository.persist(warehouse);
         return Response.ok(warehouse).status(201).build();
     }
@@ -79,8 +81,12 @@ public class WarehouseRepositoryResource {
         entity.setName(warehouse.getName());  
         entity.setPhone(warehouse.getPhone());
         entity.setEmail(warehouse.getEmail());
-        entity.setIdentity(warehouse.getIdentity());
-        entity.setDescription(warehouse.getDescription());
+        entity.setAddress(warehouse.getAddress());
+        entity.setAddress2(warehouse.getAddress2());
+        entity.setCity(warehouse.getCity());
+        entity.setState(warehouse.getState());
+        entity.setZip(warehouse.getZip());
+        entity.setCountry(warehouse.getCountry());
         
         return entity;
     }
