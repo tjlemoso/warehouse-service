@@ -60,7 +60,7 @@ public class WarehouseRepositoryResource {
         if (warehouse.getName() == "") {
             throw new WebApplicationException("Warehouse was invalidly set on request.", 422);
         }
-        warehouse.setCreateData(LocalDate.now());
+        warehouse.setCreateDate(LocalDate.now());
         warehouseRepository.persist(warehouse);
         return Response.ok(warehouse).status(201).build();
     }
